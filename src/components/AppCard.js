@@ -1,12 +1,12 @@
 import React from 'react';
 
-const ProjectCard = ({ card }) => {
+const AppCard = ({ card }) => {
   return (
-    <div className="col-12 col-lg-4 pb-3 pb-md-4 mt-2">
+    <div className="col-12 col-lg-3 pb-3 pb-md-4 mt-2">
       <div className="card shadow border-0">
         <img
           // eslint-disable-next-line
-          src={require(`../static/projectcompressed/${card.img}`)}
+          src={require(`../static/apps/${card.img}`)}
           className="card-img-top"
           alt=""
         />
@@ -88,4 +88,4 @@ const ProjectCard = ({ card }) => {
   );
 };
 
-export default ProjectCard;
+export default AppCard;

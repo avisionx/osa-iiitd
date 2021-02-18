@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
-import { Container, Row } from 'reactstrap';
-import SideBar from './components/SideBar';
-import MainPage from './components/MainPage';
+import { Container, Navbar, Nav, NavItem, NavLink } from 'reactstrap';
+import styled from 'styled-components';
+import AppsData from './components/AppsData';
+import AppsWrapper from './components/AppsWrapper';
 
 const App = () => {
   useEffect(() => {
     document.querySelectorAll('.scroll').forEach((item) => {
       item.addEventListener('click', (event) => {
         event.preventDefault();
-        const offset = 70;
         const target = item.href.split('#')[1];
-        let topVal = document.getElementById(target).offsetTop - offset;
-        if (window.innerWidth <= 767.98) {
-          topVal += window.innerHeight + offset;
-        }
+        const topVal = document.getElementById(decodeURIComponent(target))
+          .offsetTop;
         window.scrollTo({
           top: topVal,
           behavior: 'smooth',
@@ -23,13 +21,39 @@ const App = () => {
   }, []);
 
   return (
-    <Container fluid>
-      <Row className="row" style={{ minHeight: '100vh', position: 'relative' }}>
-        <SideBar />
-        <MainPage />
-      </Row>
-    </Container>
+    <div>
+      <Container className="mx-0 mx-lg-5">
+        <img
+          // eslint-disable-next-line
+          src={require(`./static/logo.png`)}
+          className="img-fluid my-1"
+          alt=""
+        />
+      </Container>
+      <div>
+        <CustomNavbar color="primary" dark expand="xs">
+          <Nav className="mx-0 mx-lg-5" navbar>
+            {Object.keys(AppsData).map((link) => (
+              <NavItem key={link}>
+                <NavLink
+                  href={`/#${link}`}
+                  className="scroll text-white border-right border-white px-3 py-1"
+                >
+                  {link}
+                </NavLink>
+              </NavItem>
+            ))}
+          </Nav>
+        </CustomNavbar>
+      </div>
+      <AppsWrapper />
+    </div>
   );
 };
+
+const CustomNavbar = styled(Navbar)`
+  width: 100vw;
+  overflow: auto;
+`;
 
 export default App;
