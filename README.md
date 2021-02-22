@@ -1,15 +1,15 @@
 <p align="center">
-  <img src="./public/logo512.png" alt="" width="160" height="160">
-  <h3 align="center">Personal Website Source Code</h3>
-  <p align="center"><img src="https://img.shields.io/github/workflow/status/avisionx/portfolio/Build%20and%20Deploy/master?style=flat-square"> <img src="https://img.shields.io/github/issues-raw/avisionx/portfolio?style=flat-square"> <img src="https://img.shields.io/website?url=https://avisionx.github.io/portfolio&style=flat-square"> <img src="https://hitcounter.pythonanywhere.com/count/tag.svg?url=https%3A%2F%2Fgithub.com%2Favisionx%2Fportfolio" alt="Hits"> <img src="https://img.shields.io/github/languages/count/avisionx/portfolio?style=flat-square"> <img src="https://img.shields.io/github/languages/code-size/avisionx/portfolio?style=flat-square"> <img src="https://img.shields.io/github/stars/avisionx/portfolio?style=flat-square"> <img src="https://img.shields.io/github/contributors/avisionx/portfolio?style=flat-square"> <img src="https://img.shields.io/github/license/avisionx/portfolio?style=flat-square"></p>
+  <img src="./public/logo.png" alt="" height="160">
+  <h3 align="center">OSA IIITD Source Code</h3>
+  <p align="center"><img src="https://img.shields.io/github/workflow/status/avisionx/osa-iiitd/Build%20and%20Deploy/master?style=flat-square"> <img src="https://img.shields.io/github/issues-raw/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/website?url=http://osaiiitd.tk/&style=flat-square"> <img src="https://img.shields.io/github/languages/count/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/languages/code-size/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/stars/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/contributors/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/license/avisionx/osa-iiitd?style=flat-square"></p>
 
   <p align="center">
-    Source code of my personal portfolio website powered by gh-pages🌐
+    Source code of OSA IIITD powered by gh-pages🌐
     </br>
-    <a href="https://github.com/avisionx/portfolio/#table-of-contents"><strong>Explore the docs »</strong></a><br/>
-    <a href="https://avisionx.github.io/portfolio">Project Link</a>
+    <a href="https://github.com/avisionx/osa-iiitd/#table-of-contents"><strong>Explore the docs »</strong></a><br/>
+    <a href="https://avisionx.github.io/osa-iiitd">Project Link</a>
     .
-    <a href="http://avisionx.net/">Live Demo</a>
+    <a href="http://osaiiitd.tk/">Live Demo</a>
   </p>
 </p>
 
@@ -31,9 +31,8 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
-![DEMO](https://user-images.githubusercontent.com/32339251/84592444-648a4500-ae63-11ea-9285-774fb6e63e89.png)
 
-This is the source code of my personal portfolio website powered by react and gh-pages. Feel free to clone, fork or suggest any features using issues tab.
+This is the source code of OSA IIITD Application powered by react and gh-pages. Feel free to clone, fork or suggest any features using issues tab.
 
 ### Built With
 
@@ -133,4 +132,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Avi Garg - [https://avisionx.net/](https://avisionx.net/) - hello@avisionx.net
 
-Project Link: [https://github.com/avisionx/portfolio](https://github.com/avisionx/portfolio)
+Project Link: [https://github.com/avisionx/portfolio](https://github.com/avisionx/osa-iiitd)
