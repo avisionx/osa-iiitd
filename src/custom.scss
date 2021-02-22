@@ -14,5 +14,40 @@ html {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  color: #000807;
+  color: #090c08;
+}
+
+.main-heading {
+  position: relative;
+  overflow: hidden;
+}
+
+.main-heading:before {
+  content: "";
+  display: inline-block;
+  height: .5em;
+  vertical-align: bottom;
+  width: 1%;
+  margin-right: 10px;
+  border-top: 1px solid #3fada8;
+}
+
+.main-heading:after {
+  content: "";
+  display: inline-block;
+  height: .5em;
+  vertical-align: bottom;
+  width: 100%;
+  margin-right: -100%;
+  margin-left: 10px;
+  border-top: 1px solid #3fada8;
+}
+
+.badge-main {
+  background-color: #57a39f;
+  color: #fbfbff;
+}
+
+.badge-main:hover {
+  background-color: #3fada8;
 }

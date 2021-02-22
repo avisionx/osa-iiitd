@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
-import { Container, Navbar, Nav, NavItem, NavLink } from 'reactstrap';
+import { mdiChevronDown, mdiChevronRight } from '@mdi/js';
+import Icon from '@mdi/react';
+import React, { useEffect, useState } from 'react';
+import { Container, Navbar, Nav, NavItem, NavLink, Collapse } from 'reactstrap';
 import styled from 'styled-components';
 import AppsData from './components/AppsData';
 import AppsWrapper from './components/AppsWrapper';
 
 const App = () => {
+  const [collapsed, setCollapsed] = useState(true);
+  const toggleNavbar = () => setCollapsed(!collapsed);
+
   useEffect(() => {
     document.querySelectorAll('.scroll').forEach((item) => {
       item.addEventListener('click', (event) => {
@@ -13,7 +18,7 @@ const App = () => {
         const topVal = document.getElementById(decodeURIComponent(target))
           .offsetTop;
         window.scrollTo({
-          top: topVal,
+          top: topVal - 30,
           behavior: 'smooth',
         });
       });
@@ -22,7 +27,7 @@ const App = () => {
 
   return (
     <div>
-      <Container className="mx-0 mx-lg-5">
+      <Container fluid>
         <img
           // eslint-disable-next-line
           src={require(`./static/logo.png`)}
@@ -30,30 +35,44 @@ const App = () => {
           alt=""
         />
       </Container>
-      <div>
-        <CustomNavbar color="primary" dark expand="xs">
-          <Nav className="mx-0 mx-lg-5" navbar>
+      <Navbar color="primary" expand="md" dark>
+        <div
+          className="d-flex d-md-none w-100 text-white py-1"
+          onClick={toggleNavbar}
+          aria-hidden="true"
+        >
+          Menu
+          <span className="ml-auto">
+            <Icon
+              path={collapsed ? mdiChevronRight : mdiChevronDown}
+              size={1}
+            />
+          </span>
+        </div>
+        <Collapse isOpen={!collapsed} navbar>
+          <Nav navbar>
             {Object.keys(AppsData).map((link) => (
-              <NavItem key={link}>
-                <NavLink
-                  href={`/#${link}`}
-                  className="scroll text-white border-right border-white px-3 py-1"
-                >
+              <NavItem className="mr-2 my-1 my-md-0 rounded-lg" key={link}>
+                <CustomNavLink href={`/#${link}`} className="scroll px-md-3">
                   {link}
-                </NavLink>
+                </CustomNavLink>
               </NavItem>
             ))}
           </Nav>
-        </CustomNavbar>
-      </div>
+        </Collapse>
+      </Navbar>
+
       <AppsWrapper />
     </div>
   );
 };
 
-const CustomNavbar = styled(Navbar)`
-  width: 100vw;
-  overflow: auto;
+const CustomNavLink = styled(NavLink)`
+  color: rgba(255, 255, 255, 0.8) !important;
+
+  &:hover {
+    color: white !important;
+  }
 `;
 
 export default App;

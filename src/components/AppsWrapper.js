@@ -5,7 +5,7 @@ import AppCard from './AppCard';
 
 const MainHeading = ({ text, id }) => {
   return (
-    <h2 className="font-weight-bold mt-1 mb-0 section-title" id={id}>
+    <h2 className="font-weight-bold mt-3 mb-1 main-heading" id={id}>
       {text}
     </h2>
   );
@@ -13,7 +13,7 @@ const MainHeading = ({ text, id }) => {
 
 const AppsWrapper = () => {
   return (
-    <Container className="mx-0 mx-lg-5" fluid>
+    <Container className="px-3 px-md-5" fluid>
       {Object.keys(AppsData).map((heading) => (
         <div key={heading}>
           <MainHeading text={heading} id={heading} />
