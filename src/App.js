@@ -61,8 +61,15 @@ const App = () => {
           </Nav>
         </Collapse>
       </Navbar>
-
       <AppsWrapper />
+      <div className="mt-4">
+        <footer className="text-center text-muted mb-2">
+          {' '}
+          <small>
+            Copyright © {new Date().getFullYear()} IIITD | All rights reserved
+          </small>{' '}
+        </footer>
+      </div>
     </div>
   );
 };
