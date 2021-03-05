@@ -1,11 +1,16 @@
 $btn-focus-box-shadow: none !important;
 $theme-colors: ("primary": #3fada8, );
+;
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
 @import '~bootstrap/scss/bootstrap';
 
 * {
   transition-duration: 300ms;
+}
+
+.form-control {
+  box-shadow: none !important;
 }
 
 html {
