@@ -1,9 +1,11 @@
 $btn-focus-box-shadow: none !important;
-$theme-colors: ("primary": #3fada8, );
+$theme-colors: ("primary": #3fada8, "success": #053225, );
 ;
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
 @import '~bootstrap/scss/bootstrap';
+
+
 
 * {
   transition-duration: 300ms;
@@ -20,6 +22,7 @@ html {
 body {
   font-family: 'Open Sans', sans-serif;
   color: #090c08;
+  overflow-x: hidden;
 }
 
 .main-heading {
