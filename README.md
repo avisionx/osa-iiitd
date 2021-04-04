@@ -59,7 +59,7 @@ npm install npm@latest -g
 1. Clone the repo
 
 ```sh
-git clone https://github.com/avisionx/portfolio.git
+git clone https://github.com/avisionx/osa-iiitd.git
 ```
 
 2. Install NPM packages
@@ -106,7 +106,7 @@ _For more examples, please refer to the [Create React App Documentation](https:/
 
 ## Roadmap
 
-See the [open issues](https://github.com/avisionx/portfolio/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/avisionx/osa-iiitd/issues) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 
@@ -132,4 +132,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Avi Garg - [https://avisionx.net/](https://avisionx.net/) - hello@avisionx.net
 
-Project Link: [https://github.com/avisionx/portfolio](https://github.com/avisionx/osa-iiitd)
+Github Link: [https://github.com/avisionx/osa-iiitd](https://github.com/avisionx/osa-iiitd)
