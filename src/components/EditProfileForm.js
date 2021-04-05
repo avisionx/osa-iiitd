@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 
-const SignUpForm = ({ handleSignUp }) => {
+const EditProfileForm = ({ handleEditProfile, prevState }) => {
   const [state, setState] = useState({
-    username: '',
-    password1: '',
-    password2: '',
-    first_name: '',
-    last_name: '',
+    ...prevState,
+    username1: prevState.username,
   });
 
   const handleChange = (e) => {
@@ -16,8 +13,10 @@ const SignUpForm = ({ handleSignUp }) => {
   };
 
   return (
-    <form onSubmit={(e) => handleSignUp(e, state)}>
-      <h2 className="font-weight-bold text-primary mb-3">OSA Sign Up Form</h2>
+    <form onSubmit={(e) => handleEditProfile(e, state)}>
+      <h2 className="font-weight-bold text-primary mb-3">
+        OSA Edit Profile Form
+      </h2>
       <div className="form-group row">
         <p className="col-sm-3 col-form-label">First Name</p>
         <div className="col-sm-9 pl-3 pl-md-0 ">
@@ -62,41 +61,24 @@ const SignUpForm = ({ handleSignUp }) => {
         </div>
       </div>
       <div className="form-group row">
-        <p className="col-sm-3 col-form-label">New Password</p>
+        <p className="col-sm-3 col-form-label">Re-Enter Email</p>
         <div className="col-sm-9 pl-3 pl-md-0 ">
           <input
-            type="password"
-            className="form-control"
-            name="password1"
-            placeholder="New Password"
-            autoComplete="new-password"
-            value={state.password1}
-            onChange={handleChange}
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-            title="Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+            type="email"
             required
-          />
-        </div>
-      </div>
-      <div className="form-group row">
-        <p className="col-sm-3 col-form-label">Re-Enter Password</p>
-        <div className="col-sm-9 pl-3 pl-md-0 ">
-          <input
-            type="password"
+            name="username1"
+            placeholder="Re-Enter Email"
+            autoComplete="new-email"
             className="form-control"
-            name="password2"
-            placeholder="Re-Enter Password"
-            autoComplete="new-password"
-            value={state.password2}
+            value={state.username1}
             onChange={handleChange}
-            required
           />
         </div>
       </div>
       <div className="d-flex">
         <input
           className="btn btn-primary ml-auto"
-          value="Sign Up"
+          value="Update Profile"
           type="submit"
         />
       </div>
@@ -104,4 +86,4 @@ const SignUpForm = ({ handleSignUp }) => {
   );
 };
 
-export default SignUpForm;
+export default EditProfileForm;

@@ -18,12 +18,17 @@ import AppsWrapper from './components/AppsWrapper';
 import AuthControls from './components/AuthControls';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
+import PasswordResetForm from './components/PasswordResetForm';
+import ChangePasswordForm from './components/ChangePasswordForm';
+
 import Config from './Config';
+import EditProfileForm from './components/EditProfileForm';
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(true);
   const [modal, setModal] = useState(false);
   const [modalType, setModalType] = useState('');
+  const [usernameForPassReset, setUsernameForPassReset] = useState('');
   const [formErr, setFormErr] = useState('');
   const toggleModal = () => setModal(!modal);
   const toggleNavbar = () => setCollapsed(!collapsed);
@@ -97,7 +102,6 @@ const App = () => {
   const handleSignUp = (e, data) => {
     e.preventDefault();
     if (data.password1 === data.password2) {
-      data.password = data.password1;
       fetch(
         `${Config.backend_base_url}core/users/`,
         {
@@ -105,7 +109,7 @@ const App = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify({ ...data, password: data.password1 }),
         },
         { strictErrors: true },
       )
@@ -131,6 +135,26 @@ const App = () => {
     } else setFormErr("Your passwords don't match!");
   };
 
+  const handlePasswordReset = (e, data) => {
+    e.preventDefault();
+    fetch(
+      `${Config.backend_base_url}core/reset_password/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      },
+      { strictErrors: true },
+    ).then((res) => {
+      if (res.status === 200) {
+        setModalType('changepassword');
+        setUsernameForPassReset(data.username);
+      }
+    });
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     setState({
@@ -141,12 +165,97 @@ const App = () => {
     });
   };
 
+  const handleChangePassword = (e, data) => {
+    e.preventDefault();
+    if (data.password1 === data.password2) {
+      fetch(
+        `${Config.backend_base_url}core/change_password/`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...data,
+            password: data.password1,
+            username: usernameForPassReset,
+          }),
+        },
+        { strictErrors: true },
+      )
+        .then((res) => {
+          if (res.status === 200) {
+            setModalType('login');
+            handleLogout();
+            return setFormErr('Login to continue!');
+          }
+          throw Error('Bad Sign Up');
+        })
+        .catch(() => {
+          setFormErr(
+            'Some error occured! Token has expired or try again after some time.',
+          );
+        });
+    } else setFormErr("Your passwords don't match!");
+  };
+
+  const handleEditProfile = (e, data) => {
+    e.preventDefault();
+    if (data.username === data.username1)
+      fetch(
+        `${Config.backend_base_url}core/edit_profile/`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `JWT ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify(data),
+        },
+        { strictErrors: true },
+      )
+        .then((res) => {
+          if (res.status === 200) {
+            return res.json();
+          }
+          throw Error('Bad Sign Up');
+        })
+        .then((json) => {
+          setState({
+            loggedIn: true,
+            username: json.username,
+            first_name: json.first_name,
+            last_name: json.last_name,
+          });
+          setModal(false);
+        })
+        .catch(() => {
+          setFormErr(
+            'Some error occured! User already exists or try again after some time.',
+          );
+        });
+    else setFormErr("Your emails don't match!");
+  };
+
   const renderModalForm = (param) => {
     switch (param) {
       case 'login':
         return <LoginForm handleLogin={handleLogin} />;
       case 'signup':
         return <SignUpForm handleSignUp={handleSignUp} />;
+      case 'resetpassword':
+        return <PasswordResetForm handlePasswordReset={handlePasswordReset} />;
+      case 'changepassword':
+        return (
+          <ChangePasswordForm handleChangePassword={handleChangePassword} />
+        );
+      case 'editprofile':
+        return (
+          <EditProfileForm
+            handleEditProfile={handleEditProfile}
+            prevState={state}
+          />
+        );
       default:
         return <></>;
     }
