@@ -67,6 +67,10 @@ const App = () => {
         });
       });
     });
+    if (window.location.hash) {
+      setModalType(window.location.hash.split('#')[1]);
+      setModal(true);
+    }
   }, []);
 
   const handleLogin = (e, data) => {
@@ -262,6 +266,7 @@ const App = () => {
   };
 
   const showModal = (param) => {
+    window.location.hash = param;
     setModalType(param);
     setModal(true);
   };
@@ -347,7 +352,14 @@ const App = () => {
         size="lg"
         isOpen={modal}
         toggle={toggleModal}
-        onClosed={() => setFormErr('')}
+        onClosed={() => {
+          setFormErr('');
+          window.history.pushState(
+            '',
+            document.title,
+            window.location.pathname,
+          );
+        }}
       >
         <ModalBody>
           <button
