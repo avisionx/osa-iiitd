@@ -23,6 +23,7 @@ import ChangePasswordForm from './components/ChangePasswordForm';
 
 import Config from './Config';
 import EditProfileForm from './components/EditProfileForm';
+import VerifyEmailForm from './components/VerifyEmailForm';
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -47,13 +48,21 @@ const App = () => {
           Authorization: `JWT ${localStorage.getItem('token')}`,
         },
       })
-        .then((res) => res.json())
+        .then((res) => {
+          if (res.status === 200) {
+            return res.json();
+          }
+          throw Error();
+        })
         .then((json) => {
           setState({ ...json, loggedIn: true });
           if (window.location.hash) {
             setModalType(window.location.hash.split('#')[1]);
             setModal(true);
           }
+        })
+        .catch(() => {
+          localStorage.removeItem('token');
         });
     }
   }, []);
@@ -95,6 +104,7 @@ const App = () => {
           username: json.user.username,
           first_name: json.user.first_name,
           last_name: json.user.last_name,
+          is_verified: json.user.is_verified,
         });
         setModal(false);
       })
@@ -130,6 +140,7 @@ const App = () => {
             username: json.username,
             first_name: json.first_name,
             last_name: json.last_name,
+            is_verified: json.is_verified,
           });
           setModal(false);
         })
@@ -166,6 +177,7 @@ const App = () => {
       username: '',
       first_name: '',
       last_name: '',
+      is_verified: false,
     });
   };
 
@@ -203,6 +215,45 @@ const App = () => {
     } else setFormErr("Your passwords don't match!");
   };
 
+  const handleVerifyEmail = (e, data) => {
+    e.preventDefault();
+    fetch(
+      `${Config.backend_base_url}core/verify_email/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+          username: state.username,
+        }),
+      },
+      { strictErrors: true },
+    )
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        throw Error('Bad Sign Up');
+      })
+      .then((json) => {
+        setState({
+          loggedIn: true,
+          username: json.username,
+          first_name: json.first_name,
+          last_name: json.last_name,
+          is_verified: json.is_verified,
+        });
+        return setModal(false);
+      })
+      .catch(() => {
+        setFormErr(
+          'Some error occured! Token has expired or try again after some time.',
+        );
+      });
+  };
+
   const handleEditProfile = (e, data) => {
     e.preventDefault();
     if (data.username === data.username1)
@@ -222,7 +273,12 @@ const App = () => {
           if (res.status === 200) {
             return res.json();
           }
-          throw Error('Bad Sign Up');
+          if (res.status === 401) {
+            throw Error('Please verify your email first!');
+          }
+          throw Error(
+            'Some error occured! User already exists or try again after some time.',
+          );
         })
         .then((json) => {
           setState({
@@ -230,13 +286,12 @@ const App = () => {
             username: json.username,
             first_name: json.first_name,
             last_name: json.last_name,
+            is_verified: json.is_verified,
           });
           setModal(false);
         })
-        .catch(() => {
-          setFormErr(
-            'Some error occured! User already exists or try again after some time.',
-          );
+        .catch((err) => {
+          setFormErr(err.message);
         });
     else setFormErr("Your emails don't match!");
   };
@@ -260,6 +315,8 @@ const App = () => {
             prevState={state}
           />
         );
+      case 'verifyemail':
+        return <VerifyEmailForm handleVerifyEmail={handleVerifyEmail} />;
       default:
         return <></>;
     }
@@ -271,8 +328,40 @@ const App = () => {
     setModal(true);
   };
 
+  const verifyEmail = () => {
+    fetch(
+      `${Config.backend_base_url}core/resend_email/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username: state.username }),
+      },
+      { strictErrors: true },
+    ).then((res) => {
+      if (res.status === 200) {
+        setModalType('verifyemail');
+        setModal(true);
+      }
+    });
+  };
+
   return (
     <div>
+      {state.loggedIn && !state.is_verified && (
+        <Alert className="mx-3 mt-1 mb-0 small" color="danger">
+          Please verify your email: {state.username} we sent you an email to
+          activate OSA App Login System.{' '}
+          <span
+            aria-hidden="true"
+            className="p-0 ml-auto text-danger pointer"
+            onClick={verifyEmail}
+          >
+            <u>Verify Now!</u>
+          </span>
+        </Alert>
+      )}
       <Container fluid>
         <div className="d-flex align-items-center mb-0">
           <h1 className="mb-0 display-3 font-weight-bold ml-auto ml-lg-0 text-primary">
