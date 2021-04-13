@@ -50,6 +50,10 @@ const App = () => {
         .then((res) => res.json())
         .then((json) => {
           setState({ ...json, loggedIn: true });
+          if (window.location.hash) {
+            setModalType(window.location.hash.split('#')[1]);
+            setModal(true);
+          }
         });
     }
   }, []);
@@ -67,10 +71,6 @@ const App = () => {
         });
       });
     });
-    if (window.location.hash) {
-      setModalType(window.location.hash.split('#')[1]);
-      setModal(true);
-    }
   }, []);
 
   const handleLogin = (e, data) => {

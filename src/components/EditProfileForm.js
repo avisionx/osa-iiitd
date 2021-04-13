@@ -60,7 +60,7 @@ const EditProfileForm = ({ handleEditProfile, prevState }) => {
           />
         </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group row mb-1">
         <p className="col-sm-3 col-form-label">Re-Enter Email</p>
         <div className="col-sm-9 pl-3 pl-md-0 ">
           <input
@@ -73,6 +73,12 @@ const EditProfileForm = ({ handleEditProfile, prevState }) => {
             value={state.username1}
             onChange={handleChange}
           />
+        </div>
+      </div>
+      <div className="form-group row">
+        <p className="col-sm-3 col-form-label" />
+        <div className="col-sm-9 pl-3 pl-md-0 small text-danger">
+          Note: Changing Email Requires Email Confirmation.
         </div>
       </div>
       <div className="d-flex">
