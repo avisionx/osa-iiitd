@@ -64,6 +64,9 @@ const App = () => {
         .catch(() => {
           localStorage.removeItem('token');
         });
+    } else if (window.location.hash) {
+      setModalType(window.location.hash.split('#')[1]);
+      setModal(true);
     }
   }, []);
 
