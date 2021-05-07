@@ -1,15 +1,15 @@
 <p align="center">
   <img src="./public/logo.png" alt="" height="160">
-  <h3 align="center">OSA IIITD Source Code</h3>
-  <p align="center"><img src="https://img.shields.io/github/workflow/status/avisionx/osa-iiitd/Build%20and%20Deploy/master?style=flat-square"> <img src="https://img.shields.io/github/issues-raw/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/website?url=http://osaiiitd.tk/&style=flat-square"> <img src="https://img.shields.io/github/languages/count/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/languages/code-size/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/stars/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/contributors/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/license/avisionx/osa-iiitd?style=flat-square"></p>
+  <h3 align="center">OSA IIITD Main App Source Code</h3>
+  <p align="center"><img src="https://img.shields.io/github/workflow/status/avisionx/osa-iiitd/Build%20and%20Deploy/master?style=flat-square"> <img src="https://img.shields.io/github/issues-raw/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/languages/count/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/languages/code-size/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/stars/avisionx/osa-iiitd?style=flat-square"> <img src="https://img.shields.io/github/contributors/avisionx/osa-iiitd?style=flat-square"></p>
 
   <p align="center">
-    Source code of OSA IIITD powered by gh-pages🌐
+    Source code of OSA IIITD Main App🌐
     </br>
     <a href="https://github.com/avisionx/osa-iiitd/#table-of-contents"><strong>Explore the docs »</strong></a><br/>
     <a href="https://avisionx.github.io/osa-iiitd">Project Link</a>
     .
-    <a href="http://osaiiitd.tk/">Live Demo</a>
+    <a href="#">Live Demo</a>
   </p>
 </p>
 
@@ -32,7 +32,7 @@
 
 ## About The Project
 
-This is the source code of OSA IIITD Application powered by react and gh-pages. Feel free to clone, fork or suggest any features using issues tab.
+This is the source code of OSA IIITD Application powered by react.
 
 ### Built With
 
